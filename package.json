@@ -9,8 +9,6 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "fix-graphql-double-import": "rm -rf ./node_modules/graphql/module",
-    "postinstall": "yarn run fix-graphql-double-import",
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "precommit": "pretty-quick --staged",
