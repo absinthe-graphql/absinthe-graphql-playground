@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const htmlPlugin = new HtmlWebPackPlugin({
@@ -15,6 +16,22 @@ module.exports = {
     library: "GraphQLPlayground",
     libraryTarget: "window",
     libraryExport: "default"
+  },
+  optimization: {
+    minimizer: [
+      // we specify a custom UglifyJsPlugin here to disable mangling
+      // See: https://github.com/graphql/graphql-js/issues/1182
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: true,
+          ecma: 6,
+          mangle: false
+        },
+        sourceMap: false
+      })
+    ]
   },
   module: {
     rules: [
