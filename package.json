@@ -1,6 +1,6 @@
 {
   "name": "@absinthe/graphql-playground",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "GraphQL Playground for Absinthe",
   "main": "./dist/main.js",
   "contributors": [
