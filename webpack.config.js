@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const htmlPlugin = new HtmlWebPackPlugin({
@@ -5,11 +6,15 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: "./index.html"
 });
 
+const nodeProdEnv = new webpack.DefinePlugin({
+  "process.env.NODE_ENV": JSON.stringify("production")
+});
+
 module.exports = {
   output: {
-    library: 'GraphQLPlayground',
-    libraryTarget: 'window',
-    libraryExport: 'default'
+    library: "GraphQLPlayground",
+    libraryTarget: "window",
+    libraryExport: "default"
   },
   module: {
     rules: [
@@ -48,5 +53,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [htmlPlugin]
+  plugins: [htmlPlugin, nodeProdEnv]
 };
