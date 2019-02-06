@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Playground, store } from "graphql-playground-react";
+import { isSubscription } from "graphql-playground-react/lib/components/Playground/util/hasSubscription";
 
 import { Socket as PhoenixSocket } from "phoenix";
 import * as AbsintheSocket from "@absinthe/socket";
@@ -39,7 +40,7 @@ const absintheLinkCreator = (session, subscriptionEndpoint) => {
 
   return {
     link: new ApolloLink.split(
-      operation => hasSubscription(operation.query),
+      operation => isSubscription(operation),
       absintheSocketLink,
       httpLink
     )
